@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,10 +26,13 @@ use Illuminate\Support\Facades\Route;
 //   return view('home.contact');
 // })->name('home.contact');
 
-Route::get('/', [HomeController::class, 'home'])
+Route::get('/', [HomeController::class, 'index'])
   ->name('home.index');
 Route::get('/contact', [HomeController::class, 'contact'])
   ->name('home.contact');
+
+Route::get('/home', [HomeController::class, 'index'])
+    ->name('home.index');
 
 Route::get('/single', AboutController::class);
 
@@ -107,3 +111,7 @@ Route::prefix('/fun')->name('fun.')->group(function() use($posts) {
   })->name('download');
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
