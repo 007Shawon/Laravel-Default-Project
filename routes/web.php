@@ -56,6 +56,9 @@ $posts = [
 ];
 
 Route::resource('posts', PostsController::class);
+ //->middleware('auth');
+
+
     // ->only(['index', 'show', 'create', 'store', 'edit', 'update']);
 
 // Route::get('/posts', function () use ($posts) {
@@ -113,5 +116,3 @@ Route::prefix('/fun')->name('fun.')->group(function() use($posts) {
 
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
